@@ -1,25 +1,32 @@
 #include<iostream>
-#include<iomanip>
 using namespace std;
+#include<cmath>
+#include<iomanip>
 
-main()
+int main()
 {
-long double a {1}, d {0};
-long long int b = 1 , c = 2;
+    long double a {4}, d {0}, e{0};
+    long long int b = 1 , c = 2;
 
-while(b<2000000)
-{
-if(c % 2 == 0){
-                d = d + (a/b);
-} 
-            else {
-                d = d - (a/b);
-                 }
-b+=2;
-c++;
-}
-
-cout << "El valor de PI es: " << setprecision(7) << d*4 << endl;
+    do
+    {
+        e = d; //Se busca un valor anterior para poder conseguir una precisión mediante la resta
+        if(c % 2 == 0)
+        {
+            d = d + (a/b);
+        } 
+        else
+        {
+            d = d - (a/b);
+        }
+        b+=2;
+        c++;
+    } // Serie de leibniz
+    while (fabs(d - fabs(e)) > 0.0000001);
+     
+    cout << "El valor de PI es: " << setprecision(8) << d << endl;
+    // setprecision(8) para que no redondé a 93
 
     return 0;
 }
+
